@@ -495,6 +495,11 @@ namespace D365DeveloperExtensions.Core.Connection
                 OutputLogger.WriteToOutputWindow($@"{Resource.Message_SuccessConnecting}|{ctrl.CrmConnectionMgr.CrmSvc.ConnectedOrgVersion}|{ctrl.CrmConnectionMgr.CrmSvc.ConnectedOrgUniqueName}",
                      MessageType.Info);
             }
+            catch(Exception ex)
+			{
+                ExceptionHandler.LogException(Logger, Resource.ErrorMessage_ErrorCrmConnection, ex);
+                OutputLogger.WriteToOutputWindow($"{Resource.ErrorMessage_ErrorCrmConnection}|Error: {ex}", MessageType.Error);
+            }
             finally
             {
                 StatusBar.ClearStatusBarValue(vsStatusAnimation.vsStatusAnimationGeneral);
